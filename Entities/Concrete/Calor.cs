@@ -8,6 +8,7 @@ namespace Entities.Concrete
     public class Calor: IEntity
     {
         public int Id { get; set; }
-        public string Calor { get; set; }
+        public string CalorName { get; set; }
+   
     }
 }

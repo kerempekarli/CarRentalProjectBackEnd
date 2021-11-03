@@ -1,8 +1,10 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +21,7 @@ namespace Business.Concrete
         }
         public IResult Add(Car car)
         {
+
             _carDal.Add(car);
             return new Result(true, "Ürün eklendi");
         }
@@ -36,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-           return new SuccessDataResult<List<Car>>( _carDal.GetAll());
+           return new SuccessDataResult<List<Car>>( _carDal.GetAll(),"Ürünler getirildi.");
         }
 
         public IResult Update(Car car)

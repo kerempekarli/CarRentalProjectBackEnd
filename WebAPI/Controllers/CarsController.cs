@@ -1,4 +1,7 @@
-﻿using Entities.Concrete;
+﻿using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,17 +15,59 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarsController : ControllerBase
     {
+        ICarService _carService;
 
-        [HttpGet]
-        public List<Car> Get()
+        public CarsController(ICarService carService)
         {
-            return new List<Car>
+            this._carService = carService;
+        }
+
+        [HttpGet("getall")]
+        public IActionResult Get()
+        {
+
+            var result = _carService.GetAll();
+            if (result.Success)
             {
-                new Car{Id=1, BrandId=1,CalorId=1,DailyPrice=1,
-                    Description= "Şehir içi kullanım için uygun",ModelYear=2017},
-                new Car{Id=2, BrandId=2,CalorId=2,DailyPrice=2,
-                    Description= "Arazide kullanı   m için uygun",ModelYear=2013}
-            };
+                return Ok(result.Data);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpPost("getbyid")]
+        public IActionResult get(int id)
+        {
+            var result = _carService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+
+        [HttpPost("add")]
+        public IActionResult Add(Car car)
+        {
+            var result = _carService.Add(car);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+
+            }
+
+
         }
     }
 }
