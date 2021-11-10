@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofact;
+using Business.CCS;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -11,14 +14,21 @@ using System.Text;
 
 namespace Business.Concrete
 {
+
+    
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        ILogger _logger;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, ILogger logger)
         {
             _carDal = carDal;
+            _logger = logger;
         }
+
+        [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
 

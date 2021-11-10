@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -12,6 +13,7 @@ namespace Business.Concrete
     {
 
         IRentalDal _rentalDal;
+       
 
         public RentalManager(IRentalDal rentalDal)
         {
