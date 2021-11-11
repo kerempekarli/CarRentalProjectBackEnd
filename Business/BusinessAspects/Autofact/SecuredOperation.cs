@@ -32,7 +32,7 @@ namespace Business.BusinessAspects.Autofact
                     return;
                 }
             }
-            throw new Exception(Messages.AuthorizationDenied);
+            throw new Exception(Core.Utilities.Messages.AspectMessages.AspectMessages.AuthorizationDenied);
         }
     }
 }

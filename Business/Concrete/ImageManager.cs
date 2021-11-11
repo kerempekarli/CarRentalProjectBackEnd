@@ -46,9 +46,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<CarImage> GetByImageId(int imageId)
+        public IDataResult<Image> GetByImageId(int imageId)
         {
-            return new SuccessDataResult<CarImage>(_imageDal.Get(c => c.Id == imageId));
+            return new SuccessDataResult<Image>(_imageDal.Get(c => c.Id == imageId));
         }
 
 

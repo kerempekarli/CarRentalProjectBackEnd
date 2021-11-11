@@ -11,22 +11,9 @@ namespace Core.Entities.Concrete
         public string LastName { get; set; }
         public string Email { get; set; }
         public byte[] PasswordSalt { get; set; }
-        public string PasswordHash { get; set; }
+        public byte[] PasswordHash { get; set; }
         public bool Status { get; set; }
 
     }
-
-    public class OperationClaim : IEntity
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class UserOperationClaim : IEntity
-
-    {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public int OperationClaimId { get; set; }
-    }
 }
+
